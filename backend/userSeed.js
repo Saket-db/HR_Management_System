@@ -1,13 +1,14 @@
 import bycrypt from 'bcryptjs';
 import User from '/models/User.js';
 import { use } from 'react';
+import connectToDatabase from './db/data.js';
 
 // Creating a userSeed file is a good practice at architecture level.
 // This file is used to seed the admins. It is very important to pre-fetch at least one user as an admin in the database.
 // Is we create admin from frontend, people can easily inspect the code and create admin accounts for themselves.
 
-const userRegister = async() =>
-{
+const userRegister = async() =>{
+    connectToDatabase();
     try{
         const newUser = new User({
             username: "admin",
