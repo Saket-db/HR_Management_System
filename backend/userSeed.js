@@ -1,6 +1,5 @@
-import bycrypt from 'bcryptjs';
-import User from '/models/User.js';
-import { use } from 'react';
+import bcrypt from 'bcrypt';
+import User from './models/User.js';
 import connectToDatabase from './db/data.js';
 
 // Creating a userSeed file is a good practice at architecture level.
@@ -8,12 +7,12 @@ import connectToDatabase from './db/data.js';
 // Is we create admin from frontend, people can easily inspect the code and create admin accounts for themselves.
 
 const userRegister = async() =>{
-    connectToDatabase();
+    await connectToDatabase();
     try{
         const newUser = new User({
             username: "admin",
             email: "admin@gmail.com",
-            password: bycrypt.hashSync("Admin@1234", 10),
+            password: bcrypt.hashSync("Admin@1234", 10),
             phone: 7387776883,
             role: "admin"
         })
