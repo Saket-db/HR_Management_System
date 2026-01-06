@@ -1,11 +1,69 @@
-import React from 'react'
+import React from "react";
 
 const Login = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <div className="min-h-screen flex flex-col bg-gray-100 pt-auto pb-auto justify-center">
+        <h2 className="text-center mb-4 text-xl font-semibold">
+          HR Management System
+        </h2>
+      <div className="w-90 p-6 bg-white rounded-lg shadow-md flex flex-col mx-auto">
 
-export default Login
+        <form>
+          <h2 className="text-lg font-semibold mb-4">Login</h2>
+
+          <label className="block mb-1 text-sm font-medium">
+            Enter Email:
+          </label>
+          <input
+            type="email"
+            placeholder="abc@gmail.com"
+            className="w-full p-2 mb-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <label className="block mb-1 text-sm font-medium">
+            Enter Password:
+          </label>
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <label className="block mb-2 text-sm font-medium">
+            Choose User Type:
+          </label>
+          <div className="flex items-center gap-4 mb-4">
+            <label className="flex items-center gap-1 text-sm">
+              <input type="radio" name="role" />
+              Admin
+            </label>
+            <label className="flex items-center gap-1 text-sm">
+              <input type="radio" name="role" />
+              Employee
+            </label>
+          </div>
+        <div className="flex items-center justify-between col-end-2">
+          <label className="flex items-center text-sm">
+            <input type="checkbox" className="mr-2" />
+            Remember Me
+          </label>
+
+          <label className="text-sm text-blue-600 cursor-pointer hover:underline">
+            Forgot Password?
+          </label>
+        </div>
+          
+
+          <button
+            type="submit"
+            className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition mt-1.5 "
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
