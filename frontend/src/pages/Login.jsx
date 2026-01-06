@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Login = () => {
+
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();// Browser submits the form and page gets refreshed. By using this, page will not get refreshed.
+    try{
+      // axios is http library, an alternative to fetch api
+      const response  = await axios.post("http://localhost:3000/api/auth/login", {email, password}); // axios(url, data, config )
+      console.log("Login successful:", response.data);
+    }
+    catch(error){
+      console.log("Error during login:", error);
+    }
+  }
   return (
     <div className="min-h-screen flex flex-col bg-linear-to-b from-blue-500 via-5%-blue-350 to-blue-200 pt-auto pb-auto justify-center">
         <h2 className="text-center mb-4 text-xl font-semibold text-white">
@@ -8,7 +23,7 @@ const Login = () => {
         </h2>
       <div className="w-90 p-6 bg-white rounded-lg shadow-md flex flex-col mx-auto">
 
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <h2 className="text-lg font-semibold mb-4">Login</h2>
 
           <label className="block mb-1 text-sm font-medium">
@@ -18,6 +33,7 @@ const Login = () => {
             type="email"
             placeholder="abc@gmail.com"
             className="w-full p-2 mb-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onChange={(e) => setemail(e.target.value)}
           />
 
           <label className="block mb-1 text-sm font-medium">
@@ -27,6 +43,7 @@ const Login = () => {
             type="password"
             placeholder="Password"
             className="w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onChange={(e) => setpassword(e.target.value)}
           />
 
           <label className="block mb-2 text-sm font-medium">
@@ -56,7 +73,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition mt-1.5 "
+            className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition mt-1.5"
           >
             Login
           </button>
