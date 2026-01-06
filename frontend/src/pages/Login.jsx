@@ -2,8 +2,8 @@ import React from "react";
 
 const Login = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100 pt-auto pb-auto justify-center">
-        <h2 className="text-center mb-4 text-xl font-semibold">
+    <div className="min-h-screen flex flex-col bg-linear-to-b from-blue-500 via-5%-blue-350 to-blue-200 pt-auto pb-auto justify-center">
+        <h2 className="text-center mb-4 text-xl font-semibold text-white">
           HR Management System
         </h2>
       <div className="w-90 p-6 bg-white rounded-lg shadow-md flex flex-col mx-auto">
