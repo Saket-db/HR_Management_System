@@ -1,16 +1,28 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
 
-  const [email, setemail] = useState('')
+  // let count  = 0;
+  const [email, setemail] = useState('') // setting email as empty by default and updating it using setemail 
   const [password, setpassword] = useState('')
+  const [count, setCount] = useState(0);
 
   const handleSubmit = async(e) => {
     e.preventDefault();// Browser submits the form and page gets refreshed. By using this, page will not get refreshed.
+     
+    setCount(prevCount => {
+      const updatedCount = prevCount + 1;
+      console.log("Button clicked times:", updatedCount);
+      return updatedCount;
+    }); // created a function over a method, since setState is async in nature inorder to get the updated value immediately.
+    // method would have worked fine if the handelSubmit function was not async.
+
     try{
       // axios is http library, an alternative to fetch api
       const response  = await axios.post("http://localhost:3000/api/auth/login", {email, password}); // axios(url, data, config )
       console.log("Login successful:", response.data);
+      console.log("Button clicked times:", count);
     }
     catch(error){
       console.log("Error during login:", error);
@@ -74,6 +86,7 @@ const Login = () => {
           <button
             type="submit"
             className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition mt-1.5"
+            // onClick={() => setCount(c => c+1)}
           >
             Login
           </button>
